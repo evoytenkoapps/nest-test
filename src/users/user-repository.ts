@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { DbService } from './db.service';
+import { DbService } from '../services/db.service';
 
 @Injectable()
-export class UserRepositoryService {
+export class UserRepository {
   constructor(private dbConnection: DbService) {}
   getUsers() {
     const query = 'SELECT * FROM USERS';

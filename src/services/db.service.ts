@@ -8,7 +8,7 @@ export class DbService {
   constructor() {
     const pgp = pgPromise();
     this.db = pgp('postgres://postgres:Qwe12345@127.0.0.1:5432/gisdb');
-    console.log('init DbService');
+    console.log('init DbService: 2asdasdasd');
   }
 
   sendQuery(query: string, data: any): Promise<any> {
