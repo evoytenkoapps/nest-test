@@ -1,12 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { DbService } from '../services/db.service';
+import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserRepository {
-  constructor(private dbConnection: DbService) {}
+  constructor(@Inject('DATABASE_CONNECTION') private connection: any) {}
   getUsers() {
     const query = 'SELECT * FROM USERS';
 
-    return this.dbConnection.sendQuery(query, null);
+    return this.connection.any(query, null);
   }
 }
