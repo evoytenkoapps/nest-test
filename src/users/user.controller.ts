@@ -1,14 +1,21 @@
-import { Controller, Get } from '@nestjs/common';
-import { UserRepository } from './user-repository';
+import { Controller, Get, Param } from '@nestjs/common';
+import { UserDao } from './user.dao';
+import { UserService } from './user.service';
 
-@Controller()
+@Controller('user')
 export class UserController {
-  constructor(private userRepository: UserRepository) {}
+  constructor(private userService: UserService) {}
 
-  @Get('users')
+  @Get('/all')
   async getUsers(): Promise<any> {
-    const users = await this.userRepository.getUsers();
-    console.log('users: 22222122');
+    console.log('getUsers');
+    const users = await this.userService.getUsers();
+
     return users;
+  }
+
+  @Get('/:id')
+  async getUser(@Param('id') id: number): Promise<any> {
+    return await this.userService.getUser(id);
   }
 }
